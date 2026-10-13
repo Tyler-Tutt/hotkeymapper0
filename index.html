@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotkey Mapper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="toolbar">
+    <h1>Hotkey Mapper</h1>
+    <label>Profile
+      <select id="profile-select"></select>
+    </label>
+    <button id="profile-new">New</button>
+    <button id="profile-rename">Rename</button>
+    <button id="profile-delete">Delete</button>
+    <span class="spacer"></span>
+    <button id="export">Export</button>
+    <button id="import">Import</button>
+    <input type="file" id="import-file" accept="application/json" hidden>
+  </header>
+
+  <main>
+    <section class="grid-panel">
+      <div class="grid-controls">
+        <label>Rows <input type="number" id="rows" min="1" max="12"></label>
+        <label>Cols <input type="number" id="cols" min="1" max="16"></label>
+        <label class="toggle" title="Clicking a cell immediately listens for a key to bind">
+          <input type="checkbox" id="quick-edit"> Quick edit
+        </label>
+        <span id="hint">Click a button to select it, then press a physical key to bind it.</span>
+      </div>
+      <div id="grid" class="grid" aria-label="Button layout"></div>
+    </section>
+
+    <aside class="detail-panel">
+      <h2>Selected button</h2>
+      <p id="no-selection">Nothing selected.</p>
+      <form id="detail" hidden>
+        <div class="field">
+          <span>Bound key</span>
+          <div class="key-row">
+            <code id="bound-key">—</code>
+            <button type="button" id="rebind">Press a key…</button>
+            <button type="button" id="clear-key">Clear</button>
+          </div>
+        </div>
+        <label class="field">Action
+          <input type="text" id="action" placeholder="e.g. Reload weapon">
+        </label>
+        <label class="field">Notes
+          <textarea id="notes" rows="6" placeholder="Context, conflicts, quirks…"></textarea>
+        </label>
+      </form>
+      <p class="last-key">Last key pressed: <code id="last-key">—</code></p>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
